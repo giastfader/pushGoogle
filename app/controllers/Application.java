@@ -1,14 +1,21 @@
 package controllers;
 
+import model.Message;
 import play.*;
+import play.data.Form;
 import play.mvc.*;
 
 import views.html.*;
 
 public class Application extends Controller {
-  
-    public static Result index() {
-        return ok("All work");
+	static Form<Message> text=Form.form(Message.class);
+	
+	public static Result index() {   
+        return ok(views.html.index.render(text));
+    }
+    
+    public static Result sendMessage(){
+    	return TODO;  
     }
   
 }

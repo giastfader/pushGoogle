@@ -1,7 +1,15 @@
-@(message: String)
+@(form: Form[Message])
 
-@main("Welcome to Play 2.1") {
-    
-    @play20.welcome(message, style = "Java")
-    
+@import helper._
+
+@main("Web app Push Google"){
+	
+	@form(routes.Application){
+		
+		@inputText(text("message"))
+       
+        <input type="submit" value="Send">
+        
+        }
+       
 }
