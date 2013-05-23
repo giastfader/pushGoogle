@@ -1,12 +1,12 @@
-@(form: Form[Message])
+@(formMessage: Form[Message])
 
 @import helper._
 
 @main("Web app Push Google"){
 	
-	@form(routes.Application){
+	@form(routes.Application.sendMessage()){
 		
-		@inputText(text("message"))
+		@inputText(formMessage("message"))
        
         <input type="submit" value="Send">
         
