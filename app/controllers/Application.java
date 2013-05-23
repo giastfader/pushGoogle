@@ -1,6 +1,6 @@
 package controllers;
 
-import model.Message;
+import models.Message;
 import play.*;
 import play.data.Form;
 import play.mvc.*;
