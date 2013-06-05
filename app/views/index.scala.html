@@ -4,14 +4,13 @@
 
 @main("Web app Push Google"){
 	<h1>Select function</h1>
-	
 	@form(routes.Application.register()){     
         @inputText(userForm("Username"))
-		@inputText(userForm("Registration ID"))
+        @inputText(userForm("registrationID"))
         <input type="submit" value="Register">
     }  
     @form(routes.Application.unregister()){
-		@inputText(userForm("Registration ID"))
+		@inputText(userForm("registrationID"))
     	<input type="submit" value="Unregister">
     
     }

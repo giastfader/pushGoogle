@@ -1,5 +1,7 @@
 package models;
 
+import play.data.validation.Constraints;
+import play.db.ebean.Model;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -7,7 +9,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 import play.data.validation.Constraints;
-import play.db.ebean.Model;
 
 @Entity
 public class User extends Model {
@@ -19,11 +20,18 @@ public class User extends Model {
 	public Long id;
 
 	@Column
-	@Constraints.Required
+	//@Constraints.Required
 	public String username;  
-
+	
+	
 	@Column
-	@Constraints.Required
-	public String regId;
-
+	//@Constraints.Required
+	public String registrationID;
+	
+	public String toString(){
+		String s="Username:"+username+" RegistrationID:"+registrationID;
+		return s;
+	}
+	
+	
 }

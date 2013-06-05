@@ -17,21 +17,33 @@ public class Application extends Controller {
   
   public static Result register(){
 	  Form<User> filledForm= userForm.bindFromRequest();
-	  User temp=filledForm.get();
-	  return (Push.register(temp.username, temp.regId));
+	  if (filledForm.hasErrors()){
+		  return badRequest(index.render(userForm, messaggioForm));
+	  } else {
+		  User temp=filledForm.get();
+		  return (Push.register(temp.username, temp.registrationID));
+	  }
   }
   
   public static Result unregister(){
 	  Form<User> filledForm= userForm.bindFromRequest();
-	  User temp=filledForm.get();
-	  return (Push.unregister(temp.regId));
+	  if (filledForm.hasErrors()){
+		  return badRequest(index.render(userForm, messaggioForm));
+	  } else {
+		  User temp=filledForm.get();
+		  return (Push.unregister(temp.registrationID));
+	  }
   }
   public static Result send(){
 	  Form<User> filledForm= userForm.bindFromRequest();
 	  Form<String> filledForm1=messaggioForm.bindFromRequest();
-	  User temp=filledForm.get();
-	  String messaggio=filledForm1.get();
-	  return (Push.send(temp.username,messaggio));
+	  if ((filledForm.hasErrors()) || (filledForm1.hasErrors())){
+		  return badRequest(index.render(userForm, messaggioForm));
+	  } else {
+		  User temp=filledForm.get();
+		  String messaggio=filledForm1.get();
+		  return (Push.send(temp.username,messaggio));
+	  }
   }
     
 }

@@ -19,26 +19,25 @@ public class Push extends Controller {
 	public static Result register(String username, String regId) {
 		ObjectNode result = Json.newObject();
 
-		List<User> list = User.find.where().eq("regId", regId).findList();
+		List<User> list = User.find.where().eq("registrationID", regId).findList();
 
 		if (list.size() > 0) {
 			result.put("status", "already registered");
 		} else {
 			User user = new User();
-			user.regId = regId;
+			user.registrationID = regId;
 			user.username = username;
 			Ebean.save(user);
-
 			result.put("status", "registered");
 		}
-
+		
 		return ok(result);
 	}
 
 	public static Result unregister(String regId) {
 		ObjectNode result = Json.newObject();
 
-		List<User> list = User.find.where().eq("regId", regId).findList();
+		List<User> list = User.find.where().eq("registrationID", regId).findList();
 
 		if (list.size() > 0) {
 			result.put("status", "unregistered");
@@ -63,7 +62,7 @@ public class Push extends Controller {
 				try {
 					Sender sender = new Sender("AIzaSyAkDixjFi97kcU70x3BRozXtkcH6Nq9bqM");
 					Message msg = new Message.Builder().addData("message", message).build();
-					sender.send(msg, user.regId, 5);
+					sender.send(msg, user.registrationID, 5);
 				} catch (Exception e) {
 					result.put("status", "Error: " + e.getMessage());
 					e.printStackTrace();
