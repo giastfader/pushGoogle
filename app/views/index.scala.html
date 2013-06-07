@@ -1,15 +1,24 @@
-@(formMessage: Form[Message])
+@(userForm: Form[User], messageForm: Form[String])
 
 @import helper._
 
 @main("Web app Push Google"){
-	
-	@form(routes.Application.sendMessage()){
-		
-		@inputText(formMessage("message"))
-       
-        <input type="submit" value="Send">
-        
-        }
-       
+	<h1>Select function</h1>
+	@form(routes.Application.register()){     
+        @inputText(userForm("Username"))
+        @inputText(userForm("registrationID"))
+        <input type="submit" value="Register">
+    }  
+    @form(routes.Application.unregister()){
+		@inputText(userForm("registrationID"))
+    	<input type="submit" value="Unregister">
+    
+    }
+    @form(routes.Application.send()){
+    	@inputText(userForm("Username"))
+		@inputText(messageForm("Messaggio"))
+    	<input type="submit" value="Send">
+    }   	
+     
+    
 }

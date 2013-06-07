@@ -1,0 +1,9 @@
+2013-06-05 20:31:25,428 - [INFO] - from play in main 
+Listening for HTTP on /0:0:0:0:0:0:0:0:9000
+
+2013-06-05 20:31:28,013 - [INFO] - from play in New I/O worker #1 
+database [default] connected at jdbc:mysql://localhost/pushGoogle
+
+2013-06-05 20:31:29,438 - [INFO] - from play in New I/O worker #1 
+Application started (Dev)
+

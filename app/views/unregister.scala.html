@@ -1,0 +1,16 @@
+@(userForm: Form[User])
+
+@import helper._
+
+@main("Web app Push Google"){
+	<h1>Unregister username</h1>
+	
+	@form(routes.Application.unregister()){
+		
+		@inputText(userForm("Registration ID"))
+       
+        <input type="submit" value="Unregister">
+
+        }
+       
+}

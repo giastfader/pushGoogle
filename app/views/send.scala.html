@@ -1,0 +1,16 @@
+@(userForm: Form[User], message: String)
+
+@import helper._
+
+@main("Web app Push Google"){
+	<h1>Send push notification to User</h1>
+	
+	@form(routes.Application.register(), 'id -> "userForm"){
+		
+		@inputText(userForm("Username"))
+		@inputText(userForm("Message"))
+
+        <input type="submit" value="Send">
+        }
+       
+}
