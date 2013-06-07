@@ -33,6 +33,26 @@ public class Push extends Controller {
 		
 		return ok(result);
 	}
+	
+	public static Result registerDevice(String regId) {
+		ObjectNode result = Json.newObject();
+
+		List<User> list = User.find.where().eq("registrationID", regId).findList();
+
+		if (list.size() > 0) {
+			result.put("status", "already registered");
+		} else {
+			User user = new User();
+			user.registrationID = regId;
+			user.username = "Prova";
+			Ebean.save(user);
+			result.put("status", "registered");
+		}
+		
+		return ok(result);
+	}
+
+	
 
 	public static Result unregister(String regId) {
 		ObjectNode result = Json.newObject();
