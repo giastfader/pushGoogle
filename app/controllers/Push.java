@@ -1,11 +1,13 @@
 package controllers;
 
 import java.util.List;
+import java.util.Map;
 
 import models.User;
 
 import org.codehaus.jackson.node.ObjectNode;
 
+import play.Logger;
 import play.libs.Json;
 import play.mvc.Controller;
 import play.mvc.Result;
@@ -34,7 +36,9 @@ public class Push extends Controller {
 		return ok(result);
 	}
 	
-	public static Result registerDevice(String regId) {
+	public static Result registerDevice() {
+		Map<String, String[]> body = request().body().asFormUrlEncoded();
+	    String regId=body.get("regId")[0];		
 		ObjectNode result = Json.newObject();
 
 		List<User> list = User.find.where().eq("registrationID", regId).findList();
@@ -82,7 +86,8 @@ public class Push extends Controller {
 				try {
 					Sender sender = new Sender("AIzaSyAkDixjFi97kcU70x3BRozXtkcH6Nq9bqM");
 					Message msg = new Message.Builder().addData("message", message).build();
-					sender.send(msg, user.registrationID, 5);
+					com.google.android.gcm.server.Result gcmResponse = sender.send(msg, user.registrationID, 5);
+					Logger.debug(gcmResponse.toString());
 				} catch (Exception e) {
 					result.put("status", "Error: " + e.getMessage());
 					e.printStackTrace();
