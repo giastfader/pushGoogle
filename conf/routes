@@ -10,6 +10,6 @@ POST   /send						      controllers.Application.send()
 GET    /push/register/:username/:regId	  controllers.Push.register(username: String, regId: String)
 GET	   /push/unregister/:regId		      controllers.Push.unregister(regId: String)
 GET    /push/send/:username/:message      controllers.Push.send(username: String, message: String)
-POST    /push/registerDevice/:regId	      controllers.Push.registerDevice(regId: String)
+POST   /push/registerDevice              controllers.Push.registerDevice()
 # Map static resources from the /public folder to the /assets URL path
 GET     /assets/*file               	  controllers.Assets.at(path="/public", file)
